@@ -1,7 +1,7 @@
 # Arithmetic Expression Mini-Compiler
 
 > **A comprehensive Front-End Compiler Architecture combining a Modular C Engine and an Interactive Web Visualizer.**  
-> Built for **Compiler Design (CS / IT / Software Engineering)**.
+> Built for **Compiler Design (24CST303)**.
 
 ---
 
@@ -9,7 +9,7 @@
 
 This repository provides a complete, dual-paradigm implementation of an **Arithmetic Expression Compiler**:
 1. **`c-compiler/` (Systems CLI Engine)**: Written in C99, implementing manual tokenization, recursive-descent parsing, AST synthesis with explicit memory management (`malloc`/`free`), and static semantic verification.
-2. **`web-gui/` (Interactive Educational Visualizer)**: Written in modern HTML/CSS/vanilla JavaScript (zero external dependencies, zero `eval`), visualizing live tokens, concrete parse trees, abstract syntax trees, dynamic symbol tables, and safe multi-line evaluation.
+2. **`web-gui/` (Interactive Educational Visualizer)**: Written in modern HTML/CSS/JavaScript (zero external dependencies, zero `eval`), visualizing live tokens, concrete parse trees, abstract syntax trees, dynamic symbol tables, and safe multi-line evaluation.
 
 ```
 +------------------------------------------------------------------------------------+

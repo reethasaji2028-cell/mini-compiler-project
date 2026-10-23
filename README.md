@@ -12,31 +12,31 @@ This repository provides a complete, dual-paradigm implementation of an **Arithm
 2. **`web-gui/` (Interactive Educational Visualizer)**: Written in modern HTML/CSS/vanilla JavaScript (zero external dependencies, zero `eval`), visualizing live tokens, concrete parse trees, abstract syntax trees, dynamic symbol tables, and safe multi-line evaluation.
 
 ```
-+-----------------------------------------------------------------------------------+
-|                               COMPILER PIPELINE                                   |
-|                                                                                   |
-|  [ Source Text ]                                                                  |
-|        │                                                                          |
-|        ▼                                                                          |
-|  ┌─────────────────────┐   Token Stream                                           |
-|  │ 1. Lexical Analysis │ ───────────────► Type, Lexeme, Line:Col                  |
-|  └─────────────────────┘                                                          |
-|        │                                                                          |
-|        ▼                                                                          |
-|  ┌─────────────────────┐   Syntax Validation & Trees                              |
-|  │ 2. Syntax Analysis  │ ───────────────► Concrete Parse Tree & AST               |
-|  └─────────────────────┘                                                          |
-|        │                                                                          |
-|        ▼                                                                          |
-|  ┌─────────────────────┐   Semantic Validation                                    |
++------------------------------------------------------------------------------------+
+|                               COMPILER PIPELINE                                    |
+|                                                                                    |
+|  [ Source Text ]                                                                   |
+|        │                                                                           |
+|        ▼                                                                           |
+|  ┌─────────────────────┐   Token Stream                                            |
+|  │ 1. Lexical Analysis │ ───────────────► Type, Lexeme, Line:Col                   |
+|  └─────────────────────┘                                                           |
+|        │                                                                           |
+|        ▼                                                                           |
+|  ┌─────────────────────┐   Syntax Validation & Trees                               |
+|  │ 2. Syntax Analysis  │ ───────────────► Concrete Parse Tree & AST                |
+|  └─────────────────────┘                                                           |
+|        │                                                                           |
+|        ▼                                                                           |
+|  ┌─────────────────────┐   Semantic Validation                                     |
 |  │ 3. Semantic Analysis│ ───────────────► Symbol Table, Scope & Div-by-Zero Checks |
-|  └─────────────────────┘                                                          |
-|        │                                                                          |
-|        ▼                                                                          |
-|  ┌─────────────────────┐   Execution                                              |
-|  │ 4. AST Evaluator    │ ───────────────► Final Evaluated Result / Diagnostics    |
-|  └─────────────────────┘                                                          |
-+-----------------------------------------------------------------------------------+
+|  └─────────────────────┘                                                           |
+|        │                                                                           |
+|        ▼                                                                           |
+|  ┌─────────────────────┐   Execution                                               |
+|  │ 4. AST Evaluator    │ ───────────────► Final Evaluated Result / Diagnostics     |
+|  └─────────────────────┘                                                           |
++------------------------------------------------------------------------------------+
 ```
 
 ---
@@ -161,21 +161,3 @@ gcc main.c lexer.c parser.c ast.c -o mini_compiler
 | `10 / 0` | Semantic Error: division by literal zero | Semantic Analysis |
 
 ---
-
-## 🎓 Viva Voce Quick-Reference
-
-- **Q: Why eliminate left recursion?**  
-  *A: In top-down recursive descent, a production like $E \to E + T$ calls `E()` before consuming any token, leading to infinite recursion and stack overflow.*
-- **Q: How is left-associativity maintained with right-recursive grammar?**  
-  *A: The parser parses iteratively using a `while` loop rather than pure recursion, nesting earlier nodes on the left: `ast = AST.binary(op, ast, rhs.ast)`.*
-- **Q: What is the difference between CST and AST?**  
-  *A: The Concrete Syntax Tree (Parse Tree) records every grammar rule, punctuation, and $\varepsilon$ token. The AST records only semantic information: operations as internal nodes and operands as leaves.*
-- **Q: How does the symbol table work?**  
-  *A: In `semantic.js`, a `Map` tracks each identifier's name, declaration line, usage count, and value. In assignment statements (`x = expr`), the right-hand side is validated before inserting `x`, preventing uninitialized usage (`x = x + 1`).*
-- **Q: Why avoid `eval()`?**  
-  *A: Direct `eval()` introduces code injection vulnerabilities and circumvents compilation principles. Our compiler performs true tree-walking interpretation on the constructed AST.*
-
----
-
-## 📜 License
-This project is developed for educational purposes under the MIT License.

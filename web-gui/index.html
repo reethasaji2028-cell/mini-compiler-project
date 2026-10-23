@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arithmetic Expression Compiler</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <div><h1>Arithmetic Expression Compiler</h1>
+  <p>Compiler front end: lexer, recursive-descent parser, AST, semantic analysis and safe evaluation.</p></div>
+  <span id="status" class="badge">Ready</span>
+</header>
+<main>
+  <section class="card span2"><h2>Expression Editor</h2>
+    <textarea id="source" rows="5" spellcheck="false" placeholder="One statement per line, e.g.&#10;x = 4&#10;y = 6&#10;x + y * 2"></textarea>
+    <div class="row"><button id="compile">Compile</button><button id="clear" class="ghost">Clear</button><button id="example" class="ghost">Load Example</button></div>
+    <p class="muted">Input format: one statement per line. <code>name = expr</code> assigns a variable; any other line is an expression. The last line's value is the final result.</p>
+  </section>
+  <section class="card span2"><h2>Compiler Pipeline</h2><div id="pipeline" class="pipeline"></div></section>
+  <section class="card"><h2>Output</h2><div id="output" class="out">—</div></section>
+  <section class="card"><h2>Error Details</h2><div id="errors" class="muted">No errors.</div></section>
+  <section class="card"><h2>Token Table</h2><div class="scroll"><table id="tokens"><thead><tr><th>#</th><th>Type</th><th>Lexeme</th><th>Line:Col</th></tr></thead><tbody></tbody></table></div></section>
+  <section class="card"><h2>Grammar</h2><pre id="grammar"></pre></section>
+  <section class="card"><h2>Parse Tree</h2><div id="parsetree" class="tree scroll"></div></section>
+  <section class="card"><h2>Abstract Syntax Tree</h2><div id="asttree" class="tree scroll"></div></section>
+  <section class="card"><h2>Semantic Analysis</h2><ul id="semantic" class="muted"></ul></section>
+  <section class="card"><h2>Symbol Table</h2><table id="symbols"><thead><tr><th>Name</th><th>Type</th><th>Value</th><th>Line</th><th>Uses</th></tr></thead><tbody></tbody></table></section>
+  <section class="card span2"><h2>Examples</h2><div id="examples" class="row"></div></section>
+</main>
+<script src="js/lexer.js"></script><script src="js/grammar.js"></script><script src="js/ast.js"></script>
+<script src="js/parser.js"></script><script src="js/semantic.js"></script><script src="js/evaluator.js"></script>
+<script src="js/compiler.js"></script><script src="js/ui.js"></script><script src="js/main.js"></script>
+</body>
+</html>
